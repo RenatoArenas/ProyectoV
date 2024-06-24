@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <title>Inicio</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #343a40 !important;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #adb5bd !important;
+        }
+
+        .table thead {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .table th,
+        .table td {
+            border-color: #dee2e6;
+            vertical-align: middle;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f8f9fa;
+        }
+
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: #e9ecef;
+        }
+
+        .table-striped tbody tr:hover {
+            background-color: #d1d8e0;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" th:href="@{/}">Registro e inicio de sesión</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login?logout}">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>//</h1>
+        <br>
+        <br> <br>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>DNI</th>
+                        <th>Celular</th>
+                        <th>Dirección</th>
+                        <th>Distrito</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.email}"></td>
+                        <td th:text="${usuario.dni}"></td>
+                        <td th:text="${usuario.celular}"></td>
+                        <td th:text="${usuario.ubigeo.distrito}"></td>
+                        <td th:text="${usuario.ubigeo.ubicacion}"></td>
+                        <td th:text="${usuario.rol.nombre}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
