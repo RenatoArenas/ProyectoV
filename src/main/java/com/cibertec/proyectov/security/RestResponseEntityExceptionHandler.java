@@ -1,6 +1,7 @@
 package com.cibertec.proyectov.security;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpHeaders;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -63,7 +65,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     	Map<String,String> errorMap=new HashMap<>();
     	
         errorMap.put(ex.getProperty(), ex.getMessage());
-    	ResponseData<Object> res = new ResponseData<Object>("Hay " + errorMap.size() + " error(es) de validación", 0, errorMap);
+    	ResponseData<Object> res = new ResponseData<Object>(ex.getMessage(), 0, errorMap);
     	
         return new ResponseEntity<>(res, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
@@ -72,12 +74,14 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<Object>  handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
     	Map<String,String> errorMap=new HashMap<>();
     	
-    	ex.getBindingResult().getFieldErrors().forEach(error->
+    	List<FieldError> errors = ex.getBindingResult().getFieldErrors();
+    	
+    	errors.forEach(error->
         {
             errorMap.put(error.getField(),error.getDefaultMessage());
         });
     	
-    	ResponseData<Object> res = new ResponseData<Object>("Hay " + errorMap.size() + " error(es) de validación", 0, errorMap);
+    	ResponseData<Object> res = new ResponseData<Object>(errors.get(0).getDefaultMessage(), 0, errorMap);
     	
         return new ResponseEntity<>(res, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
