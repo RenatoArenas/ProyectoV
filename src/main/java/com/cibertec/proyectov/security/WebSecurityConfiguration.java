@@ -29,7 +29,7 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         return security.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/register", "/login", "/error").permitAll()
+                .requestMatchers("/register", "/login", "/error", "/doc/swagger-ui/**","/swagger-resources/*", "/v3/api-docs/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated()

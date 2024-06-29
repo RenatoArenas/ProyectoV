@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -21,13 +22,16 @@ public class CustomerModel {
 	
     @Column(unique = true)
     @NotBlank(message = "El documento es obligatorio")
+    @Size(min = 8, max = 11, message = "El tamaño del documento debe ser entre 8 y 11 carácteres")
 	private String doc;
     
     @NotBlank(message = "El nombre es obligatorio")
+    @Size(max = 100, message = "El tamaño máximo del nombre es 100 carácteres")
 	private String name;
     
 
     @NotBlank(message = "El apellido es obligatorio")
+    @Size(max = 100, message = "El tamaño máximo del apellido es 100 carácteres")
 	private String lname;
     
 	@Email(message = "No es una dirección de correo válida")
@@ -37,6 +41,7 @@ public class CustomerModel {
     
 
     @NotBlank(message = "El celular es obligatorio")
+    @Size(min=9, max = 9, message = "El tamaño del celular debe ser de 9 caracteres")
 	private String phone;
     
 	private boolean state = true;
@@ -44,13 +49,14 @@ public class CustomerModel {
 	public CustomerModel() {
 	}
 
-	
 
-	public CustomerModel(Long id, @NotBlank(message = "El documento es obligatorio") String doc,
-			@NotBlank(message = "El nombre es obligatorio") String name,
-			@NotBlank(message = "El apellido es obligatorio") String lname,
+	public CustomerModel(Long id,
+			@NotBlank(message = "El documento es obligatorio") @Size(min = 8, max = 11, message = "El tamaño del documento debe ser entre 8 y 11 carácteres") String doc,
+			@NotBlank(message = "El nombre es obligatorio") @Size(max = 100, message = "El tamaño máximo del nombre es 100 carácteres") String name,
+			@NotBlank(message = "El apellido es obligatorio") @Size(max = 100, message = "El tamaño máximo del nombre es 100 carácteres") String lname,
 			@Email(message = "No es una dirección de correo válida") @NotBlank(message = "El email es obligatorio") String email,
-			@NotBlank(message = "El celular es obligatorio") String phone, boolean state) {
+			@NotBlank(message = "El celular es obligatorio") @Size(min = 9, max = 9, message = "El tamaño del celular debe ser de 9 caracteres") String phone,
+			boolean state) {
 		this.id = id;
 		this.doc = doc;
 		this.name = name;
@@ -59,6 +65,8 @@ public class CustomerModel {
 		this.phone = phone;
 		this.state = state;
 	}
+
+
 
 
 

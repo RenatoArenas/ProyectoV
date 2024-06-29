@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -18,6 +19,7 @@ public class PurchaseDetailModel {
 	 private Long id;
 	
 	 @NotNull(message = "El nombre es obligatorio")
+	 @Size(max = 100, message = "El tamaño máximo del nombre es 100 carácteres")
 	 private String name;
 	 
 	 @NotNull(message = "El precio es obligatorio")
@@ -33,7 +35,8 @@ public class PurchaseDetailModel {
 	}
 
 
-	public PurchaseDetailModel(Long id, @NotNull(message = "El nombre es obligatorio") String name,
+	public PurchaseDetailModel(Long id,
+			@NotNull(message = "El nombre es obligatorio") @Size(max = 100, message = "El tamaño máximo del nombre es 100 carácteres") String name,
 			@NotNull(message = "El precio es obligatorio") double price,
 			@NotNull(message = "La cantidad es obligatoria") int quantity,
 			@NotNull(message = "El total es obligatorio") double total) {
@@ -43,6 +46,9 @@ public class PurchaseDetailModel {
 		this.quantity = quantity;
 		this.total = total;
 	}
+
+
+
 
 
 

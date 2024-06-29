@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -21,6 +22,7 @@ public class UserModel {
 
     @Column(nullable = false)
     @NotBlank(message = "El usuario es obligatorio")
+    @Size(max = 10, message = "El tamaño máximo del usuario es 10 carácteres")
     private String username;
     
     @Column(unique = true)
@@ -30,20 +32,26 @@ public class UserModel {
     
     @Column(nullable = false)
     @NotBlank(message = "La contraseña es obligatoria")
+    @Size(max = 20, message = "El tamaño máximo de la contraseña 20 carácteres")
     private String password;
 
 	public UserModel() {
 		
 	}
 	
-	public UserModel(Long id, @NotBlank(message = "El usuario es obligatorio") String username,
+
+
+	public UserModel(Long id,
+			@NotBlank(message = "El usuario es obligatorio") @Size(max = 10, message = "El tamaño máximo del usuario es 10 carácteres") String username,
 			@NotBlank(message = "El correo es obligatorio") @Email(message = "No es una dirección de correo válida") String email,
-			@NotBlank(message = "La contraseña es obligatoria") String password) {
+			@NotBlank(message = "La contraseña es obligatoria") @Size(max = 20, message = "El tamaño máximo de la contraseña 20 carácteres") String password) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
+
+
 
 
 	public Long getId() {
