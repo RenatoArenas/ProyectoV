@@ -71,6 +71,20 @@ public class CustomerServiceImpl implements CustomerService {
 
 	}
 
+	@Override
+	public CustomerModel findByDoc(String doc) {
+		Optional<CustomerModel> customerex = customerRepository.findByDocAndStateTrue(doc);
+		CustomerModel customer = new CustomerModel();
+		if (!customerex.isEmpty()) {
+			customer = customerex.get();
+			
+	    } else {
+	    	throw new RuntimeException("No existe este cliente");
+	    }
+		
+		return customer;
+	}
+
 
 
 	

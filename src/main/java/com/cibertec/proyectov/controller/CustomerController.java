@@ -39,6 +39,14 @@ public class CustomerController {
 		 
 	 }
 	 
+	 @GetMapping("/searchdoc")
+	 public ResponseData<CustomerModel> getCustomersByDoc(@RequestParam String doc) {
+		 CustomerModel customerres = customerService.findByDoc(doc);
+		 
+		 
+	 	 return new ResponseData<CustomerModel>("Cliente listado con éxito", 1, customerres);
+		 
+	 }
 	 
 	 @PostMapping
 	 public ResponseData<CustomerModel> saveCustomer(@Valid @RequestBody CustomerModel customerreq, HttpServletResponse response)  {

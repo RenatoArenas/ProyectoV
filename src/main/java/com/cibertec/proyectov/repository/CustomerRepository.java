@@ -19,7 +19,7 @@ public interface CustomerRepository extends JpaRepository<CustomerModel, Long>{
 
 	boolean existsByDocAndIdNot(String doc, Long id);
 	
-    Optional<CustomerModel> findByDoc(String doc);
+    Optional<CustomerModel> findByDocAndStateTrue(String doc);
 	
     Optional<CustomerModel> findByIdAndStateTrue(Long id);
     

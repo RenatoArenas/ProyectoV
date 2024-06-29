@@ -8,6 +8,8 @@ public interface CustomerService {
 	
 	List<CustomerModel> findAll();
 	
+	CustomerModel findByDoc(String doc);
+	
 	CustomerModel save(CustomerModel customer);
 	
 	void delete(Long id);
