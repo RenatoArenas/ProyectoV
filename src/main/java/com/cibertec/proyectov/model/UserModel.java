@@ -32,7 +32,6 @@ public class UserModel {
     
     @Column(nullable = false)
     @NotBlank(message = "La contraseña es obligatoria")
-    @Size(max = 20, message = "El tamaño máximo de la contraseña 20 carácteres")
     private String password;
 
 	public UserModel() {
@@ -44,7 +43,7 @@ public class UserModel {
 	public UserModel(Long id,
 			@NotBlank(message = "El usuario es obligatorio") @Size(max = 10, message = "El tamaño máximo del usuario es 10 carácteres") String username,
 			@NotBlank(message = "El correo es obligatorio") @Email(message = "No es una dirección de correo válida") String email,
-			@NotBlank(message = "La contraseña es obligatoria") @Size(max = 20, message = "El tamaño máximo de la contraseña 20 carácteres") String password) {
+			@NotBlank(message = "La contraseña es obligatoria") String password) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
