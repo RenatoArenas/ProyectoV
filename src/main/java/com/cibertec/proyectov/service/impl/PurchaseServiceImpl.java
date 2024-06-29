@@ -71,11 +71,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 	    	throw new RuntimeException("No existe esta venta");
 	    }
 		
-		String filepath = "/templatedoc/repventadoc.docx";
-		String filepathsave = "/templatedoc/resultrepventa.pdf";
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(".").getFile() + filepath);
-		File filesave = new File(classLoader.getResource(".").getFile() + filepathsave);
+		String filepath = "./repventadoc.docx";
+		String filepathsave = "./resultrepventa.pdf";
+		File file = new File(filepath);
+		File filesave = new File(filepathsave);
 		
 		String base64str = "";
 		
