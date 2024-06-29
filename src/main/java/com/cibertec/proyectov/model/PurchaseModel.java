@@ -3,7 +3,6 @@ package com.cibertec.proyectov.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +23,6 @@ public class PurchaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    @Column(unique = true)
     @NotBlank(message = "El documento es obligatorio")
 	private String doc;
     
@@ -36,7 +34,6 @@ public class PurchaseModel {
 	private String lname;
     
 	@Email(message = "No es una dirección de correo válida")
-    @Column(unique = true)
     @NotBlank(message = "El email es obligatorio")
 	private String email;
     

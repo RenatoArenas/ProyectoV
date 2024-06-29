@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cibertec.proyectov.dto.PurchaseResponse;
 import com.cibertec.proyectov.dto.ResponseData;
 import com.cibertec.proyectov.model.PurchaseModel;
 import com.cibertec.proyectov.service.impl.PurchaseServiceImpl;
@@ -37,11 +38,15 @@ public class PurchaseController {
 	 }
 	 
 	 @PostMapping
-	 public ResponseData<PurchaseModel> savePurchase(@Valid @RequestBody PurchaseModel purchasereq, HttpServletResponse response)  {
+	 public ResponseData<PurchaseResponse> savePurchase(@Valid @RequestBody PurchaseModel purchasereq, HttpServletResponse response)  {
         
-		 PurchaseModel purchaseres = purchaseService.save(purchasereq);
-	 
-	 	 return new ResponseData<PurchaseModel>("Venta creada con éxito", 1, purchaseres);
+		 PurchaseModel purchase = purchaseService.save(purchasereq);
+
+		 String base64rep = purchaseService.report(purchase.getId());
+		 
+		 
+		 
+	 	 return new ResponseData<PurchaseResponse>("Venta creada con éxito", 1, new PurchaseResponse(purchase.getId(), base64rep));
 	 } 
 	 
 	 @DeleteMapping

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cibertec.proyectov.UniqueException;
+import com.cibertec.proyectov.exceptions.UniqueException;
 import com.cibertec.proyectov.model.CustomerModel;
 import com.cibertec.proyectov.repository.CustomerRepository;
 import com.cibertec.proyectov.service.CustomerService;
@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 			
 			if(customerRepository.existsByEmailAndIdNot(customer.getEmail(), customer.getId())) {
-				throw new UniqueException("email", "Ya existe un cliente con este documento");
+				throw new UniqueException("email", "Ya existe un cliente con este email");
 			}
 			
 		} else {
@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 			
 			if(customerRepository.existsByEmail(customer.getEmail())) {
-				throw new UniqueException("email", "Ya existe un cliente con este documento");
+				throw new UniqueException("email", "Ya existe un cliente con este email");
 			}
 		}
 		

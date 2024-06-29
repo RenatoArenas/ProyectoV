@@ -1,4 +1,4 @@
-package com.cibertec.proyectov;
+package com.cibertec.proyectov.exceptions;
 
 public class UniqueException extends RuntimeException {
     /**

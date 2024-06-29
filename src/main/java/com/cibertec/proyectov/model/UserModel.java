@@ -36,12 +36,15 @@ public class UserModel {
 		
 	}
 	
-	public UserModel(Long id, String username, String email, String password) {
+	public UserModel(Long id, @NotBlank(message = "El usuario es obligatorio") String username,
+			@NotBlank(message = "El correo es obligatorio") @Email(message = "No es una dirección de correo válida") String email,
+			@NotBlank(message = "La contraseña es obligatoria") String password) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
+
 
 	public Long getId() {
 		return id;

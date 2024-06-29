@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	UserRepository userRepository;
 	
 	
+	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
@@ -29,10 +30,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		
 	}
 
-	@Override
-	public UserModel createUser(UserModel user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
