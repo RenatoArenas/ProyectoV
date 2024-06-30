@@ -31,7 +31,7 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/register", "/login", "/error", "/doc/swagger-ui/**","/swagger-resources/*", "/v3/api-docs/**", "/api/**").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("")
+                .authorizeHttpRequests().requestMatchers("/null")
                 .authenticated()
                 .and()
                 .sessionManagement()
