@@ -12,6 +12,6 @@ public interface PurchaseService {
 	
 	void delete(Long id);
 	
-	String report(Long id);
+	void report(Long id);
 	
 }

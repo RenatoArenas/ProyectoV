@@ -1,8 +1,16 @@
 package com.cibertec.proyectov.controller;
 
 import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,15 +46,29 @@ public class PurchaseController {
 	 }
 	 
 	 @PostMapping
-	 public ResponseData<PurchaseResponse> savePurchase(@Valid @RequestBody PurchaseModel purchasereq, HttpServletResponse response)  {
+	 public ResponseEntity<Resource> savePurchase(@Valid @RequestBody PurchaseModel purchasereq, HttpServletResponse response) throws FileNotFoundException  {
         
 		 PurchaseModel purchase = purchaseService.save(purchasereq);
 
-		 String base64rep = purchaseService.report(purchase.getId());
+		 purchaseService.report(purchase.getId());
+
+		String filepathsave = "./resultrepventa.pdf";
+		File file = new File(filepathsave);
 		 
 		 
+		 InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 		 
-	 	 return new ResponseData<PurchaseResponse>("Venta creada con éxito", 1, new PurchaseResponse(purchase.getId(), base64rep));
+		 HttpHeaders headers = new HttpHeaders();
+	        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+	        headers.add("Pragma", "no-cache");
+	        headers.add("Expires", "0");
+	        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=informe.pdf");
+	        
+		 return ResponseEntity.ok()
+		            .headers(headers)
+		            .contentLength(file.length())
+		            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+		            .body(resource);
 	 } 
 	 
 	 @DeleteMapping

@@ -60,7 +60,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public String report(Long id) {
+	public void report(Long id) {
 		
 		Optional<PurchaseModel> purchaseex = purchaseRepository.findById(id);
 		PurchaseModel purchase = new PurchaseModel();
@@ -131,9 +131,6 @@ public class PurchaseServiceImpl implements PurchaseService {
             
             doc.save(out, saveOptions);
 
-    		byte[] inFileBytes = Files.readAllBytes(filesave.toPath()); 
-    		
-    		base64str = Base64.getEncoder().encodeToString(inFileBytes);
     		
         } catch (IOException e) {
         } catch (Exception e) {
@@ -141,7 +138,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 		}
 		
 		
-		return base64str;
 	}
 
 }
