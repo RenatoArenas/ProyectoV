@@ -12,7 +12,7 @@
 	<groupId>Proyecto</groupId>
 	<artifactId>V</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EFSR</name>
+	<name>ProyectoV</name>
 	<description>Proyecto</description>
 	<url />
 	<licenses>
@@ -28,7 +28,7 @@
 		<url />
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
