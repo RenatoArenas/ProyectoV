@@ -35,7 +35,7 @@ public class ProductController {
 		 List<ProductModel> productres = productService.getAll();
 		 
 		 
-	 	 return new ResponseData<List<ProductModel>>("Clientes listados con éxito", 1, productres);
+	 	 return new ResponseData<List<ProductModel>>("Productos listados con éxito", 1, productres);
 		 
 	 }
 	 
@@ -44,7 +44,7 @@ public class ProductController {
 		 ProductModel productres = productService.getById(productid);
 		 
 		 
-	 	 return new ResponseData<ProductModel>("Clientes listados con éxito", 1, productres);
+	 	 return new ResponseData<ProductModel>("Producto listado con éxito", 1, productres);
 		 
 	 }
 	 
@@ -70,6 +70,6 @@ public class ProductController {
 	 public ResponseData<Object> deleteCustomer(@RequestParam Long id){
 		 productService.delete(id);
 		
-		 return new ResponseData<Object>("Cliente eliminado con éxito", 1);
+		 return new ResponseData<Object>("Producto eliminado con éxito", 1);
 	 }
 }
