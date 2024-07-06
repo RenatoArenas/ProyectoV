@@ -7,6 +7,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.servers.ServerVariable;
+
+
+@OpenAPIDefinition(servers = {@Server(url = "https://{host}",
+variables = @ServerVariable(name = "host",
+defaultValue = "hostname_sit",
+allowableValues = {"hostname_sit","hostname_uat"}),
+description = "Host name by environment")})
 @SpringBootApplication
 public class ProyectoVApplication {
 
