@@ -43,7 +43,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<ResponseData<Object>> handleAccessDeniedException(Exception exception, WebRequest webRequest)
     {
-    	
     	ResponseData<Object> res = new ResponseData<Object>(exception.getMessage(), 0);
     	
         return new ResponseEntity<>(res, new HttpHeaders(), HttpStatus.UNAUTHORIZED);

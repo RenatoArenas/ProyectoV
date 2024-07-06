@@ -22,7 +22,7 @@ public class UserModel {
 
     @Column(nullable = false)
     @NotBlank(message = "El usuario es obligatorio")
-    @Size(max = 10, message = "El tamaño máximo del usuario es 10 carácteres")
+    @Size(max = 30, message = "El tamaño máximo del usuario es 30 carácteres")
     private String username;
     
     @Column(unique = true)
