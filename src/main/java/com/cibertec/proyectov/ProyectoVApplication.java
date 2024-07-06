@@ -12,11 +12,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.servers.ServerVariable;
 
 
-@OpenAPIDefinition(servers = {@Server(url = "https://{host}",
-variables = @ServerVariable(name = "host",
-defaultValue = "hostname_sit",
-allowableValues = {"hostname_sit","hostname_uat"}),
-description = "Host name by environment")})
+@OpenAPIDefinition(servers = {@Server(url = "https://incredible-magic-production.up.railway.app")})
 @SpringBootApplication
 public class ProyectoVApplication {
 
